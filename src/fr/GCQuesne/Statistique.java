@@ -9,36 +9,38 @@ package fr.GCQuesne;
 import java.util.Scanner;
 
 public class Statistique {
+  static int numberCreditCard,
+      numberCheque,
+      numberTransfer,
+      totalOrder;
 
-    public static void main(String[] args) {
+  static double averageCreditCard,
+      averageCheque,
+      averageTransfer;
 
-        int numberCreditCard,
-                numberCheque,
-                numberTransfer;
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
 
-        double totalOrder,
-                averageCreditCard,
-                averageCheque,
-                averageTransfer;
+    System.out.println("Nombre de paiements par carte bancaire :");
+    numberCreditCard = sc.nextInt();
+    System.out.println("Nombre de chèques émis :");
+    numberCheque = sc.nextInt();
+    System.out.println("Nombre de virements automatique :");
+    numberTransfer = sc.nextInt();
 
-        Scanner sc = new Scanner(System.in);
+    totalOrder = numberCreditCard + numberCheque + numberTransfer;
+    averageCreditCard = percentage(numberCreditCard);
+    averageCheque = percentage(numberCheque);
+    averageTransfer = percentage(numberTransfer);
 
-        System.out.println("Nombre de paiements par carte bancaire :");
-        numberCreditCard = sc.nextInt();
-        System.out.println("Nombre de chèques émis :");
-        numberCheque = sc.nextInt();
-        System.out.println("Nombre de virements automatique :");
-        numberTransfer = sc.nextInt();
+    System.out.println("Vous avez émis " + totalOrder + " ordres de débits :\n" +
+        "dont : " + averageCreditCard + "% par Carte bancaire\n" +
+        "       " + averageCheque + "% par cheque\n" +
+        "       " + averageTransfer + "% par virement");
 
-        totalOrder = numberCreditCard + numberCheque + numberTransfer;
-        averageCreditCard = numberCreditCard * 100 / totalOrder;
-        averageCheque = numberCheque * 100 / totalOrder;
-        averageTransfer = numberTransfer * 100 / totalOrder;
+  }
 
-        System.out.println("Vous avez émis" + totalOrder + "ordres de débits :\n" +
-                "dont : " + averageCreditCard + "% par Carte bancaire\n" +
-                "       " + averageCheque + "% par cheque\n" +
-                "       " + averageTransfer + "% par virement");
-
-    }
+  public static double percentage(int numberOrderType) {
+    return numberOrderType * 100 / (double) totalOrder;
+  }
 }
