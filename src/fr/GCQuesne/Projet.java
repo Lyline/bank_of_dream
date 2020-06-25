@@ -13,12 +13,12 @@ public class Projet {
   static long accountNumber;
   static char accountType, paymentTheme, paymentType;
   static double accountValue, accountSavingRate, date;
-  static int selectionMenu = 0;
+  static int selectionMenu;
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     do {
-      mainMenu();
+      selectionMenu = mainMenu();
 
       switch (selectionMenu) {
         case 1:
@@ -37,14 +37,8 @@ public class Projet {
         case 2:
           System.out.println("Saisir le numéro de compte :");
           long accountNumberCheck = sc.nextLong();
-          if (accountNumberCheck == accountNumber) {
-            System.out.println("Numéro de compte : " + accountNumber
-                + "\nType de compte : " + accountType
-                + "\nValeur initiale : " + accountValue + " €");
-            if (accountType == 'e' || accountType == 'é' || accountType == 'E') {
-              System.out.println("Taux épargne : " + accountSavingRate + " %");
-            }
-          } else System.out.println("Numéro de compte non valide");
+          if (accountNumberCheck == accountNumber) printAccount();
+          else System.out.println("Numéro de compte non valide");
           break;
         case 3:
           System.out.println("Option non programmée");
@@ -56,20 +50,23 @@ public class Projet {
           helpApplication();
           break;
         default:
-          System.out.println("Sélection non reconnue");
+          System.out.println("Sélection non reconnue\n");
       }
     } while (selectionMenu != 4);
   }
 
-  public static void mainMenu() {
+  public static int mainMenu() {
+    int selectMenu;
     Scanner sc = new Scanner(System.in);
-    System.out.println("1 Créer un compte\n" +
+
+    System.out.println("\n1 Créer un compte\n" +
         "2 Afficher un compte\n" +
         "3 Crée une ligne comptabe\n" +
         "4 Sortir\n" +
         "5 De l'aide\n\n" +
         "Votre choix :");
-    selectionMenu = sc.nextInt();
+    selectMenu = sc.nextInt();
+    return selectMenu;
   }
 
   public static void exitApplication() {
@@ -83,6 +80,17 @@ public class Projet {
         "Créer une ligne comptable : Ajout d'un mouvement bancaire sur un compte\n" +
         "Sortir : Fermeture l'application\n" +
         "De l'aide : Affichage d'un menu d'aide\n");
+  }
+
+  public static void printAccount() {
+    System.out.print("Le compte n° : " + accountNumber + " est un compte ");
+    if (accountType == 'C' || accountType == 'c') System.out.println("Courant");
+    else if (accountType == 'J' || accountType == 'j') System.out.println("Joint");
+    else if (accountType == 'E' || accountType == 'e' || accountType == 'é') {
+      System.out.println("épargne dont le taux est de " + accountSavingRate + " %\n");
+    }
+    System.out.println("Valeur initiale : " + accountValue + " €");
+
   }
 }
 
