@@ -10,35 +10,27 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Project {
-  static String accountNumber, accountType, paymentTheme, paymentType;
-  static double accountValue, accountSavingRate, date;
   static int selectionMenu;
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
+    Account myAccount = new Account();
+
     do {
       selectionMenu = mainMenu();
 
       switch (selectionMenu) {
         case 1:
-          System.out.println("Type du compte [Type possible : courant, joint, épargne] :");
-          accountType = sc.next();
-          System.out.println("Numéro de compte :");
-          accountNumber = sc.next();
-          System.out.println("Première valeur créditée :");
-          accountValue = sc.useLocale(Locale.US).nextDouble();
-          if (accountType.equals("e") || accountType.equals("é") || accountType.equals("E")) {
-            System.out.println("Taux de placement :");
-            accountSavingRate = sc.useLocale(Locale.US).nextDouble();
-          }
+          myAccount.createAccount();
           break;
 
         case 2:
           System.out.println("Saisir le numéro de compte :");
           String accountNumberCheck = sc.next();
-          if (accountNumberCheck.equals(accountNumber)) printAccount();
+          if (accountNumberCheck.equals(myAccount.accountNumber)) myAccount.printAccount();
           else System.out.println("Numéro de compte non valide");
           break;
+
         case 3:
           System.out.println("Option non programmée");
           break;
@@ -81,16 +73,6 @@ public class Project {
         "De l'aide : Affichage d'un menu d'aide\n");
   }
 
-  public static void printAccount() {
-    System.out.print("Le compte n° : " + accountNumber + " est un compte ");
-    if (accountType.equals("C") || accountType.equals("c")) System.out.println("courant");
-    else if (accountType.equals("J") || accountType.equals("j")) System.out.println("joint");
-    else if (accountType.equals("e") || accountType.equals("é") || accountType.equals("E")) {
-      System.out.println("épargne dont le taux est de " + accountSavingRate + " %\n");
-    }
-    System.out.println("Valeur initiale : " + accountValue + " €");
-
-  }
 }
 
 
