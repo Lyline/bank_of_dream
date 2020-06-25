@@ -8,7 +8,7 @@ package fr.GCQuesne;
 
 import java.util.Scanner;
 
-public class Statistique {
+public class Statistic {
   static int numberCreditCard,
       numberCheque,
       numberTransfer,

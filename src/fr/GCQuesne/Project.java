@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author GCQuesne
  * @version 1.0
  */
-public class Projet {
+public class Project {
   static String accountNumber, accountType, paymentTheme, paymentType;
   static double accountValue, accountSavingRate, date;
   static int selectionMenu;
