@@ -1,6 +1,5 @@
 package fr.GCQuesne;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -13,6 +12,7 @@ public class Project {
   static int selectionMenu;
 
   public static void main(String[] args) {
+    String accountNumberCheck;
     Scanner sc = new Scanner(System.in);
     Account myAccount = new Account();
 
@@ -26,13 +26,16 @@ public class Project {
 
         case 2:
           System.out.println("Saisir le numéro de compte :");
-          String accountNumberCheck = sc.next();
+          accountNumberCheck = sc.next();
           if (accountNumberCheck.equals(myAccount.accountNumber)) myAccount.printAccount();
           else System.out.println("Numéro de compte non valide");
           break;
 
         case 3:
-          System.out.println("Option non programmée");
+          System.out.println("Saisir le numéro de compte :");
+          accountNumberCheck = sc.next();
+          if (accountNumberCheck.equals(myAccount.accountNumber)) myAccount.createRecord();
+          else System.out.println("Numéro de compte non valide");
           break;
         case 4:
           exitApplication();
