@@ -13,6 +13,7 @@ public class Account {
   private String clientFirstName, accountType, clientLastName, accountNumber;
   private double accountValue, accountInitialValue, accountSavingRate;
   private int lineRecorded;
+  BookEntry line;
 
   public String getAccountType() {
     return accountType;
@@ -46,9 +47,7 @@ public class Account {
     this.accountSavingRate = accountSavingRate;
   }
 
-  BookEntry line;
-
-  public void createAccount() {
+  public Account() {
     Scanner sc = new Scanner(System.in);
 
     System.out.println("Saisir le nom du client :");
@@ -63,6 +62,11 @@ public class Account {
       accountSavingRate = sc.useLocale(Locale.US).nextDouble();
     }
     accountInitialValue = checkAccountInitialValue();
+    lineRecorded = 0;
+  }
+
+  public Account(String accountNumberEmpty) {
+    accountNumber = accountNumberEmpty;
     lineRecorded = 0;
   }
 
@@ -81,10 +85,8 @@ public class Account {
 
   public void createRecord() {
     line = new BookEntry();
-
-    line.createAccountingRecord();
-    lineRecorded = 1;
     accountValue = accountInitialValue + line.getTransactionValue();
+    lineRecorded = 1;
   }
 
   private String checkingAccountType() {

@@ -13,15 +13,17 @@ public class Project {
 
   public static void main(String[] args) {
     String accountNumberCheck;
+    String emptyValue = "";
+    
+    Account myAccount = new Account(emptyValue);
     Scanner sc = new Scanner(System.in);
-    Account myAccount = new Account();
 
     do {
       selectionMenu = mainMenu();
 
       switch (selectionMenu) {
         case 1:
-          myAccount.createAccount();
+          myAccount = new Account();
           break;
 
         case 2:

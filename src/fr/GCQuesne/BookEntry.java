@@ -10,8 +10,10 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class BookEntry {
-  private String transactionPaymentType, transactionTheme, chequeNumber = "";
-  private long date;
+  private final String transactionPaymentType;
+  private final String transactionTheme;
+  private final long date;
+  private String chequeNumber = "";
   private double transactionValue;
 
   public double getTransactionValue() {
@@ -22,7 +24,7 @@ public class BookEntry {
     this.transactionValue = transactionValue;
   }
 
-  public void createAccountingRecord() {
+  public BookEntry() {
     Scanner sc = new Scanner(System.in);
 
     System.out.println("La somme à créditer (valeur positive) ou à débiter (valeur négative) :");
