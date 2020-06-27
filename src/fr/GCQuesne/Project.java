@@ -27,14 +27,14 @@ public class Project {
         case 2:
           System.out.println("Saisir le numéro de compte :");
           accountNumberCheck = sc.next();
-          if (accountNumberCheck.equals(myAccount.accountNumber)) myAccount.printAccount();
+          if (accountNumberCheck.equals(myAccount.getAccountNumber())) myAccount.printAccount();
           else System.out.println("Numéro de compte non valide");
           break;
 
         case 3:
           System.out.println("Saisir le numéro de compte :");
           accountNumberCheck = sc.next();
-          if (accountNumberCheck.equals(myAccount.accountNumber)) myAccount.createRecord();
+          if (accountNumberCheck.equals(myAccount.getAccountNumber())) myAccount.createRecord();
           else System.out.println("Numéro de compte non valide");
           break;
         case 4:

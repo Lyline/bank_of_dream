@@ -10,9 +10,17 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class BookEntry {
-  String transactionPaymentType, transactionTheme, chequeNumber = "";
-  long date;
-  double transactionValue;
+  private String transactionPaymentType, transactionTheme, chequeNumber = "";
+  private long date;
+  private double transactionValue;
+
+  public double getTransactionValue() {
+    return transactionValue;
+  }
+
+  public void setTransactionValue(double transactionValue) {
+    this.transactionValue = transactionValue;
+  }
 
   public void createAccountingRecord() {
     Scanner sc = new Scanner(System.in);
@@ -21,12 +29,9 @@ public class BookEntry {
     transactionValue = sc.useLocale(Locale.US).nextDouble();
     System.out.println("La date de l'opération :");
     date = sc.nextLong();
-    System.out.println("Le motif de l'achat ou de la vente [Thème possible : salaire, loyer, alimentation, divers...] :");
-    transactionTheme = sc.next();
-    System.out.println("Le mode de paiement [Type possible : CB, Numéro du chèque, Virement] :");
-    transactionPaymentType = sc.next();
-
-    if (transactionPaymentType.equals("ch") || transactionPaymentType.equals("CH") || transactionPaymentType.equals("Ch")) {
+    transactionTheme = checkTransactionTheme();
+    transactionPaymentType = checkTransactionPaymentType();
+    if (transactionPaymentType.equals("Chèque")) {
       System.out.println("Saisir le numéro du chèque :");
       chequeNumber = sc.next();
     }
@@ -43,6 +48,63 @@ public class BookEntry {
     if (!chequeNumber.isEmpty()) {
       System.out.print(" - Numéro du chèque : " + chequeNumber);
     }
+  }
+
+  private String checkTransactionTheme() {
+    char tempIn;
+    String tempOut = "";
+
+    Scanner sc = new Scanner(System.in);
+
+    do {
+      System.out.println("Le motif de l'achat ou de la vente [Thème : (S)alaire, (L)oyer, (A)limentation, (D)ivers...] :");
+      tempIn = sc.next().toUpperCase().charAt(0);
+      if (tempIn != 'S' && tempIn != 'L' && tempIn != 'A' && tempIn != 'D')
+        System.out.println("-- Attention, saisir une valeur valide --");
+    } while (tempIn != 'S' && tempIn != 'L' && tempIn != 'A' && tempIn != 'D');
+
+    switch (tempIn) {
+      case 'S':
+        tempOut = "Salaire";
+        break;
+      case 'L':
+        tempOut = "Loyer";
+        break;
+      case 'A':
+        tempOut = "Alimentation";
+        break;
+      case 'D':
+        tempOut = "Divers";
+        break;
+    }
+    return tempOut;
+  }
+
+  private String checkTransactionPaymentType() {
+    char tempIn;
+    String tempOut = "";
+
+    Scanner sc = new Scanner(System.in);
+
+    do {
+      System.out.println("Le mode de paiement [Type possible : (C)B, c(H)èque, (V)irement] :");
+      tempIn = sc.next().toUpperCase().charAt(0);
+      if (tempIn != 'C' && tempIn != 'H' && tempIn != 'V')
+        System.out.println("-- Attention, saisir une valeur valide --");
+    } while (tempIn != 'C' && tempIn != 'H' && tempIn != 'V');
+
+    switch (tempIn) {
+      case 'C':
+        tempOut = "CB";
+        break;
+      case 'H':
+        tempOut = "Chèque";
+        break;
+      case 'V':
+        tempOut = "Virement";
+        break;
+    }
+    return tempOut;
   }
 
 }
