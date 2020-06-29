@@ -16,6 +16,7 @@ public class Project {
     String emptyValue = "";
     
     Account myAccount = new Account(emptyValue);
+    SavingAccount mySavingAccount = new SavingAccount(emptyValue);
     Scanner sc = new Scanner(System.in);
 
     do {
@@ -23,13 +24,21 @@ public class Project {
 
       switch (selectionMenu) {
         case 1:
-          myAccount = new Account();
+          char temp;
+          do {
+            System.out.println("Créer un compte (C)ourant ou un compte (E)pargne :");
+            temp = sc.next().toUpperCase().charAt(0);
+            if (temp != 'C' && temp != 'E') System.out.println("-- Attention, saisir une valeur valide : C ou E --");
+          } while (temp != 'C' && temp != 'E');
+          if (temp == 'C') myAccount = new Account();
+          else mySavingAccount = new SavingAccount();
           break;
 
         case 2:
           System.out.println("Saisir le numéro de compte :");
           accountNumberCheck = sc.next();
           if (accountNumberCheck.equals(myAccount.getAccountNumber())) myAccount.printAccount();
+          else if (accountNumberCheck.equals(mySavingAccount.getAccountNumber())) mySavingAccount.printAccount();
           else System.out.println("Numéro de compte non valide");
           break;
 

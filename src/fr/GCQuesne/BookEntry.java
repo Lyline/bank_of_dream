@@ -40,7 +40,7 @@ public class BookEntry {
   }
 
   public void printAccountingRecord() {
-    System.out.print("Date : " + date + " - Thème : " + transactionTheme);
+    System.out.print("\nDate : " + date + " - Thème : " + transactionTheme);
 
     if (transactionValue > 0) System.out.print(" - Crédit : " + transactionValue);
     else System.out.print(" - Débit : " + transactionValue);
