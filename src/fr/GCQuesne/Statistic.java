@@ -1,12 +1,13 @@
 package fr.GCQuesne;
+
+import java.util.Scanner;
+
 /**
- * Calcule la moyenne du nombre de paiements par carte bancaire, par chèque et par virement
+ * Sets, calculates and gets the average of order's type (credit card, cheque and transfer)
  *
  * @author GCQuesne
  * @version 1.0
  */
-
-import java.util.Scanner;
 
 public class Statistic {
   static int numberCreditCard,
@@ -40,6 +41,12 @@ public class Statistic {
 
   }
 
+  /**
+   * Calculate the average of this order's type (credit card, cheque or transfer)
+   *
+   * @param numberOrderType the total number's order for this type
+   * @return the average of this type by total order of all types
+   */
   public static double percentage(int numberOrderType) {
     return numberOrderType * 100 / (double) totalOrder;
   }

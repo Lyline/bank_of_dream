@@ -60,6 +60,18 @@ public class Project {
     } while (selectionMenu != 4);
   }
 
+  /**
+   * Prints the main menu and selects the item:
+   * <ul>
+   *   <li>Create an account</li>
+   *   <li>Print an account</li>
+   *   <li>Create an accounting record</li>
+   *   <li>Exit to the application</li>
+   *   <li>Print the help of main menu</li>
+   * </ul>
+   *
+   * @return the value of this selected item
+   */
   public static int mainMenu() {
     int selectMenu;
     Scanner sc = new Scanner(System.in);
@@ -74,11 +86,17 @@ public class Project {
     return selectMenu;
   }
 
+  /**
+   * Exits to the application
+   */
   public static void exitApplication() {
     System.out.println("À Bientôt");
     System.exit(0);
   }
 
+  /**
+   * Prints the help of main menu
+   */
   public static void helpApplication() {
     System.out.println("Créer un compte : Ouverture d'un nouveau compte\n" +
         "Afficher un compte : Consultation d'un compte existant\n" +

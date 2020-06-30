@@ -16,14 +16,11 @@ public class BookEntry {
   private String chequeNumber = "";
   private double transactionValue;
 
-  public double getTransactionValue() {
-    return transactionValue;
-  }
-
-  public void setTransactionValue(double transactionValue) {
-    this.transactionValue = transactionValue;
-  }
-
+  /**
+   * Constructor, create a accounting entry's object
+   *
+   * @since 1.0
+   */
   public BookEntry() {
     Scanner sc = new Scanner(System.in);
 
@@ -39,6 +36,31 @@ public class BookEntry {
     }
   }
 
+  /**
+   * Getter for the transaction's value
+   *
+   * @return the value of the transaction
+   * @since 1.0
+   */
+  public double getTransactionValue() {
+    return transactionValue;
+  }
+
+  /**
+   * Setter for the transaction's value
+   *
+   * @param transactionValue
+   * @since 1.0
+   */
+  public void setTransactionValue(double transactionValue) {
+    this.transactionValue = transactionValue;
+  }
+
+  /**
+   * Print the line of accounting record : date, theme, credit/debit, the value of transaction and the type of transaction
+   *
+   * @since 1.0
+   */
   public void printAccountingRecord() {
     System.out.print("\nDate : " + date + " - Thème : " + transactionTheme);
 
@@ -52,6 +74,11 @@ public class BookEntry {
     }
   }
 
+  /**
+   * Enter and check the theme of the transaction : Salary, Rent, Feeding and Miscellaneous
+   *
+   * @return the theme of the transaction normalize
+   */
   private String checkTransactionTheme() {
     char tempIn;
     String tempOut = "";
@@ -59,7 +86,7 @@ public class BookEntry {
     Scanner sc = new Scanner(System.in);
 
     do {
-      System.out.println("Le motif de l'achat ou de la vente [Thème : (S)alaire, (L)oyer, (A)limentation, (D)ivers...] :");
+      System.out.println("Le motif de l'achat ou de la vente [Thème : (S)alaire, (L)oyer, (A)limentation, (D)ivers] :");
       tempIn = sc.next().toUpperCase().charAt(0);
       if (tempIn != 'S' && tempIn != 'L' && tempIn != 'A' && tempIn != 'D')
         System.out.println("-- Attention, saisir une valeur valide --");
@@ -82,6 +109,12 @@ public class BookEntry {
     return tempOut;
   }
 
+  /**
+   * Enter and check the type of payment : Credit card, Cheque and Transfer
+   *
+   * @return the type of payment normalize
+   * @since 1.0
+   */
   private String checkTransactionPaymentType() {
     char tempIn;
     String tempOut = "";
