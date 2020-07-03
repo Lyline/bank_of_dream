@@ -11,12 +11,14 @@ import java.util.Scanner;
  */
 public class Account {
   protected double accountValue, accountInitialValue;
-  protected int lineRecorded;
   private String clientFirstName;
   private String accountType;
   private String clientLastName;
   private String accountNumber;
-  BookEntry line;
+  public static final int numberRecordMaxi = 10;
+  protected BookEntry[] line;
+  protected int lineRecorded;
+
 
   /**
    * Constructor, creates a new account's object
@@ -33,6 +35,7 @@ public class Account {
    */
   public Account() {
     Scanner sc = new Scanner(System.in);
+    line = new BookEntry[numberRecordMaxi];
 
     System.out.println("Saisir le nom du client :");
     clientLastName = sc.next();
@@ -42,7 +45,7 @@ public class Account {
     accountNumber = sc.next();
     accountType = checkingAccountType();
     accountInitialValue = checkAccountInitialValue();
-    lineRecorded = 0;
+    lineRecorded = -1;
   }
 
   /**
@@ -62,7 +65,9 @@ public class Account {
    */
   public Account(char accountSavingType) {
     Scanner sc = new Scanner(System.in);
+
     if (accountSavingType == 'E') {
+      line = new BookEntry[numberRecordMaxi];
       accountType = "Épargne";
 
       System.out.println("Saisir le nom du client :");
@@ -72,7 +77,7 @@ public class Account {
       System.out.println("Saisir le numéro du nouveau compte :");
       accountNumber = sc.next();
       accountInitialValue = checkAccountInitialValue();
-      lineRecorded = 0;
+      lineRecorded = -1;
     }
   }
 
@@ -138,16 +143,6 @@ public class Account {
   }
 
   /**
-   * Sets the number of this account - Warning, it's to delete !!!
-   *
-   * @param accountNumber
-   * @since 1.0
-   */
-  public void setAccountNumber(String accountNumber) {
-    this.accountNumber = accountNumber;
-  }
-
-  /**
    * Gets the value of this account
    *
    * @return current value of this account
@@ -184,22 +179,40 @@ public class Account {
     System.out.println("Nom du client : " + clientLastName + "\nPrénom du client : " + clientFirstName);
     System.out.print("Le compte n° : " + accountNumber + " est un compte " + accountType);
 
-    if (lineRecorded > 0) {
-      line.printAccountingRecord();
+    if (lineRecorded >= 0) {
+      for (int i = 0; i <= lineRecorded; i++) {
+        line[i].printAccountingRecord();
+      }
       System.out.print("\nValeur du compte : " + accountValue + " €\n");
     } else
       System.out.println("\nValeur initiale : " + accountInitialValue + " €\n\n-- Aucune ligne comptable enregistrée --");
   }
 
   /**
-   * Creates a accounting record with a book entry's object, sets the new value of this account after this transaction and sets the line recorded's variable at 1
+   * Creates a accounting record with a book entry's array object, sets the new value of this account after this transaction and sets the line recorded's variable increment 1 until 9 (an array of 10 elements)
    *
    * @since 1.0
    */
   public void createRecord() {
-    line = new BookEntry();
-    accountValue = accountInitialValue + line.getTransactionValue();
-    lineRecorded = 1;
+    lineRecorded++;
+    if (lineRecorded < numberRecordMaxi) {
+      line[lineRecorded] = new BookEntry();
+    } else {
+      lineRecorded--;
+      shiftLine();
+      line[lineRecorded] = new BookEntry();
+    }
+    accountValue = accountValue + line[lineRecorded].getTransactionValue();
+
+  }
+
+  /**
+   * Shift this accounting records if the array's elements are greater than 10
+   */
+  private void shiftLine() {
+    for (int i = 1; i < numberRecordMaxi; i++) {
+      line[i - 1] = line[i];
+    }
   }
 
   /**

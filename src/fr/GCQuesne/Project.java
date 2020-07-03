@@ -46,6 +46,7 @@ public class Project {
           System.out.println("Saisir le numéro de compte :");
           accountNumberCheck = sc.next();
           if (accountNumberCheck.equals(myAccount.getAccountNumber())) myAccount.createRecord();
+          else if (accountNumberCheck.equals(mySavingAccount.getAccountNumber())) mySavingAccount.createRecord();
           else System.out.println("Numéro de compte non valide");
           break;
         case 4:

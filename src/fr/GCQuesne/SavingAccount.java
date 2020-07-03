@@ -81,8 +81,10 @@ public class SavingAccount extends Account {
     System.out.println("Nom du client : " + getClientLastName() + "\nPrénom du client : " + getClientFirstName());
     System.out.print("Le compte n° : " + getAccountNumber() + " est un compte Épargne dont le taux de placement est de : " + accountSavingRate + " %");
 
-    if (lineRecorded > 0) {
-      line.printAccountingRecord();
+    if (lineRecorded >= 0) {
+      for (int i = 0; i <= lineRecorded; i++) {
+        line[i].printAccountingRecord();
+      }
       System.out.print("\nValeur du compte : " + getAccountValue() + " €\n");
     } else
       System.out.println("\nValeur initiale : " + accountInitialValue + " €\n\n-- Aucune ligne comptable enregistrée --");
