@@ -34,17 +34,6 @@ public class SavingAccount extends Account {
   }
 
   /**
-   * Constructor : create a SavingAccount's object with one parameter
-   *
-   * @param emptyValue the number of this account
-   * @see Account
-   * @since 1.0
-   */
-  public SavingAccount(String emptyValue) {
-    super(emptyValue);
-  }
-
-  /**
    * Gets the saving rate of this account
    *
    * @return current value of the saving rate
@@ -87,6 +76,6 @@ public class SavingAccount extends Account {
       }
       System.out.print("\nValeur du compte : " + getAccountValue() + " €\n");
     } else
-      System.out.println("\nValeur initiale : " + accountInitialValue + " €\n\n-- Aucune ligne comptable enregistrée --");
+      System.out.println("\nValeur initiale : " + getAccountValue() + " €\n-- Aucune ligne comptable enregistrée --\n");
   }
 }

@@ -44,7 +44,7 @@ public class Account {
     System.out.println("Saisir le numéro du nouveau compte :");
     accountNumber = sc.next();
     accountType = checkingAccountType();
-    accountInitialValue = checkAccountInitialValue();
+    accountValue = checkAccountInitialValue();
     lineRecorded = -1;
   }
 
@@ -76,7 +76,7 @@ public class Account {
       clientFirstName = sc.next();
       System.out.println("Saisir le numéro du nouveau compte :");
       accountNumber = sc.next();
-      accountInitialValue = checkAccountInitialValue();
+      accountValue = checkAccountInitialValue();
       lineRecorded = -1;
     }
   }
@@ -183,9 +183,10 @@ public class Account {
       for (int i = 0; i <= lineRecorded; i++) {
         line[i].printAccountingRecord();
       }
-      System.out.print("\nValeur du compte : " + accountValue + " €\n");
+      System.out.print("\nValeur du compte : " + accountValue + " €\n\n");
     } else
-      System.out.println("\nValeur initiale : " + accountInitialValue + " €\n\n-- Aucune ligne comptable enregistrée --");
+      System.out.print("\nValeur initiale : " + accountValue + " €" +
+          "\n-- Aucune ligne comptable enregistrée --\n\n");
   }
 
   /**
@@ -195,6 +196,8 @@ public class Account {
    */
   public void createRecord() {
     lineRecorded++;
+    accountInitialValue = accountValue;
+
     if (lineRecorded < numberRecordMaxi) {
       line[lineRecorded] = new BookEntry();
     } else {
@@ -202,7 +205,7 @@ public class Account {
       shiftLine();
       line[lineRecorded] = new BookEntry();
     }
-    accountValue = accountValue + line[lineRecorded].getTransactionValue();
+    accountValue = accountInitialValue + line[lineRecorded].getTransactionValue();
 
   }
 

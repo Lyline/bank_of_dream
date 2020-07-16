@@ -20,18 +20,22 @@ public class ListAccount {
   /**
    * Adds a new account and put on the account's list
    *
-   * @param accountType "Épargne" for create a saving account, "Autre" for create a current account or a join account
    * @see Account
    * @since 1.0
    */
-  private void addAccount(String accountType) {
+  public void addAccount() {
+    char accountType;
+    Scanner sc = new Scanner(System.in);
 
-    if (accountType == "Épargne") {
-      myAccount = new Account("E");
+    System.out.println("Créer un compte de type (E)pargne ou (A)utre ?");
+    accountType = sc.next().toUpperCase().charAt(0);
+
+    if (accountType == 'E') {
+      myAccount = new SavingAccount();
       String key = myAccount.getAccountNumber();
       if (!listAccount.containsKey(key)) listAccount.put(key, myAccount);
       else System.out.println("-- Attention, ce numéro de compte existe déjà, veuillez recommencer --");
-    } else if (accountType == "Courant" || accountType == "Joint") {
+    } else if (accountType == 'A') {
       myAccount = new Account();
       String key = myAccount.getAccountNumber();
       if (!listAccount.containsKey(key)) listAccount.put(key, myAccount);
@@ -42,14 +46,12 @@ public class ListAccount {
   /**
    * Adds a new accounting record on this account
    *
-   * @param accountNumber this number is the account's number to which create a new accounting record
    * @since 1.0
    */
-  private void addAccountingRecord(String accountNumber) {
-    if (listAccount.containsKey(accountNumber)) {
-      myAccount = listAccount.get(accountNumber);
-      myAccount.createRecord();
-    } else System.out.println("-- Ce compte est inexistant --");
+  public void addAccountingRecord() {
+    String accountNumber = searchAccount();
+    if (listAccount.containsKey(accountNumber)) myAccount.createRecord();
+    else System.out.println("-- Ce compte est inexistant --");
   }
 
   /**
@@ -57,7 +59,7 @@ public class ListAccount {
    *
    * @since 1.0
    */
-  private void searchAccount() {
+  public String searchAccount() {
     Scanner sc = new Scanner(System.in);
     String accountSearched;
     Account account;
@@ -67,17 +69,17 @@ public class ListAccount {
 
     if (listAccount.containsKey(accountSearched)) {
       account = listAccount.get(accountSearched);
-      account.printAccount();
+      accountSearched = account.getAccountNumber();
     } else System.out.println("-- Ce numéro de compte n'existe pas --");
+    return accountSearched;
   }
 
   /**
    * Deletes this account and all its data
    */
-  private void deleteAccount() {
+  public void deleteAccount() {
     Scanner sc = new Scanner(System.in);
     String accountSearched;
-    Account account;
 
     System.out.println("Saisir le numéro de compte à supprimer :");
     accountSearched = sc.next();
@@ -91,7 +93,7 @@ public class ListAccount {
   /**
    * Prints the list of all accounts (current, joint and saving)
    */
-  private void printAllAccount() {
+  public void printAllAccount() {
     if (listAccount.size() != 0) {
       Collection<Account> c = listAccount.values();
       for (Account element : c) element.printAccount();

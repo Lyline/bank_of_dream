@@ -12,53 +12,36 @@ public class Project {
   static int selectionMenu;
 
   public static void main(String[] args) {
-    String accountNumberCheck;
-    String emptyValue = "";
-    
-    Account myAccount = new Account(emptyValue);
-    SavingAccount mySavingAccount = new SavingAccount(emptyValue);
-    Scanner sc = new Scanner(System.in);
+    ListAccount myListAccount = new ListAccount();
 
     do {
       selectionMenu = mainMenu();
-
       switch (selectionMenu) {
         case 1:
-          char temp;
-          do {
-            System.out.println("Créer un compte (C)ourant ou un compte (E)pargne :");
-            temp = sc.next().toUpperCase().charAt(0);
-            if (temp != 'C' && temp != 'E') System.out.println("-- Attention, saisir une valeur valide : C ou E --");
-          } while (temp != 'C' && temp != 'E');
-          if (temp == 'C') myAccount = new Account();
-          else mySavingAccount = new SavingAccount();
+          myListAccount.addAccount();
           break;
 
         case 2:
-          System.out.println("Saisir le numéro de compte :");
-          accountNumberCheck = sc.next();
-          if (accountNumberCheck.equals(myAccount.getAccountNumber())) myAccount.printAccount();
-          else if (accountNumberCheck.equals(mySavingAccount.getAccountNumber())) mySavingAccount.printAccount();
-          else System.out.println("Numéro de compte non valide");
+          myListAccount.addAccountingRecord();
           break;
 
         case 3:
-          System.out.println("Saisir le numéro de compte :");
-          accountNumberCheck = sc.next();
-          if (accountNumberCheck.equals(myAccount.getAccountNumber())) myAccount.createRecord();
-          else if (accountNumberCheck.equals(mySavingAccount.getAccountNumber())) mySavingAccount.createRecord();
-          else System.out.println("Numéro de compte non valide");
+          myListAccount.deleteAccount();
           break;
+
         case 4:
-          exitApplication();
+          myListAccount.printAllAccount();
           break;
         case 5:
+          exitApplication();
+          break;
+        case 6:
           helpApplication();
           break;
         default:
           System.out.println("Sélection non reconnue\n");
       }
-    } while (selectionMenu != 4);
+    } while (selectionMenu != 5);
   }
 
   /**
@@ -78,10 +61,11 @@ public class Project {
     Scanner sc = new Scanner(System.in);
 
     System.out.println("\n1 Créer un compte\n" +
-        "2 Afficher un compte\n" +
-        "3 Crée une ligne comptabe\n" +
-        "4 Sortir\n" +
-        "5 De l'aide\n\n" +
+        "2 Ajouter une ligne comptable\n" +
+        "3 Supprimer un compte\n" +
+        "4 Afficher la liste de tous les comptes\n" +
+        "5 Sortir\n" +
+        "6 De l'aide\n\n" +
         "Votre choix :");
     selectMenu = sc.nextInt();
     return selectMenu;
@@ -107,5 +91,3 @@ public class Project {
   }
 
 }
-
-
