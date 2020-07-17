@@ -94,10 +94,15 @@ public class ListAccount implements Serializable {
   /**
    * Prints the list of all accounts (current, joint and saving)
    */
-  public void printAllAccount() {
+  public void printAllAccounts() {
     if (listAccount.size() != 0) {
       Collection<Account> c = listAccount.values();
       for (Account element : c) element.printAccount();
     } else System.out.println("-- Il n'y a aucun compte enregistré --");
+  }
+
+  public void printAccount(String temp) {
+    Account account = listAccount.get(temp);
+    account.printAccount();
   }
 }

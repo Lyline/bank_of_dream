@@ -1,5 +1,6 @@
 package fr.GCQuesne;
 
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
  * @author GCQuesne
  * @version 1.0
  */
-public class BookEntry {
+public class BookEntry implements Serializable {
   private final String transactionPaymentType;
   private final String transactionTheme;
   private final long date;

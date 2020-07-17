@@ -30,7 +30,11 @@ public class FileAccount {
         System.out.println("-- Fichier trouvé --");
       } else if (mode == 'W') {
         ofW = new ObjectOutputStream(new FileOutputStream(nameFile));
+<<<<<<< HEAD
         System.out.println("-- Fichier créé --");
+=======
+        System.out.println("-- Fichier trouvé --");
+>>>>>>> [Add] Class FileAccount allows create, read, write and delete the data file contains the list account [Edit] Intégration the functions of the FileAccount class
       }
       return true;
     } catch (IOException e) {

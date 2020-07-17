@@ -177,7 +177,7 @@ public class Account implements Serializable {
    * @since 1.0
    */
   public void printAccount() {
-    System.out.println("Nom du client : " + clientLastName + "\nPrénom du client : " + clientFirstName);
+    System.out.println("\nNom du client : " + clientLastName + "\nPrénom du client : " + clientFirstName);
     System.out.print("Le compte n° : " + accountNumber + " est un compte " + accountType);
 
     if (lineRecorded >= 0) {

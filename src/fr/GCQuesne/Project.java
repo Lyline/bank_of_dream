@@ -1,6 +1,6 @@
 package fr.GCQuesne;
 
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author GCQuesne
  * @version 1.0
  */
-public class Project {
+public class Project implements Serializable {
   static int selectionMenu;
 
   public static void main(String[] args) {
@@ -33,14 +33,15 @@ public class Project {
           break;
 
         case 3:
-          myListAccount.searchAccount();
+          String accountPrinted = myListAccount.searchAccount();
+          myListAccount.printAccount(accountPrinted);
           break;
         case 4:
           myListAccount.deleteAccount();
           break;
 
         case 5:
-          myListAccount.printAllAccount();
+          myListAccount.printAllAccounts();
           break;
 
         case 6:
