@@ -1,5 +1,6 @@
 package fr.GCQuesne;
 
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
  * @author GCQuesne
  * @version 1.0
  */
-public class Account {
+public class Account implements Serializable {
   protected double accountValue, accountInitialValue;
   private String clientFirstName;
   private String accountType;

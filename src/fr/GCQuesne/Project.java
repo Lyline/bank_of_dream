@@ -1,5 +1,6 @@
 package fr.GCQuesne;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -14,6 +15,12 @@ public class Project {
   public static void main(String[] args) {
     ListAccount myListAccount = new ListAccount();
 
+    FileAccount myFileAccount = new FileAccount();
+    if (myFileAccount.openFile("read")) {
+      myListAccount = myFileAccount.readFile();
+      myFileAccount.closeFile();
+    }
+
     do {
       selectionMenu = mainMenu();
       switch (selectionMenu) {
@@ -26,22 +33,30 @@ public class Project {
           break;
 
         case 3:
+          myListAccount.searchAccount();
+          break;
+        case 4:
           myListAccount.deleteAccount();
           break;
 
-        case 4:
+        case 5:
           myListAccount.printAllAccount();
           break;
-        case 5:
+
+        case 6:
+          myFileAccount.openFile("write");
+          myFileAccount.writeFile(myListAccount);
+          myFileAccount.closeFile();
           exitApplication();
           break;
-        case 6:
+
+        case 7:
           helpApplication();
           break;
         default:
           System.out.println("Sélection non reconnue\n");
       }
-    } while (selectionMenu != 5);
+    } while (selectionMenu != 6);
   }
 
   /**
@@ -62,10 +77,11 @@ public class Project {
 
     System.out.println("\n1 Créer un compte\n" +
         "2 Ajouter une ligne comptable\n" +
-        "3 Supprimer un compte\n" +
-        "4 Afficher la liste de tous les comptes\n" +
-        "5 Sortir\n" +
-        "6 De l'aide\n\n" +
+        "3 Rechercher un compte\n" +
+        "4 Supprimer un compte\n" +
+        "5 Afficher la liste de tous les comptes\n" +
+        "6 Sortir\n" +
+        "7 De l'aide\n\n" +
         "Votre choix :");
     selectMenu = sc.nextInt();
     return selectMenu;

@@ -1,10 +1,11 @@
 package fr.GCQuesne;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class ListAccount {
+public class ListAccount implements Serializable {
   private final HashMap<String, Account> listAccount;
   private Account myAccount;
 
