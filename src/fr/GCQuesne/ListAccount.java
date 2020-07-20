@@ -79,15 +79,23 @@ public class ListAccount implements Serializable {
    * Deletes this account and all its data
    */
   public void deleteAccount() {
-    Scanner sc = new Scanner(System.in);
     String accountSearched;
+    char temp;
+    Account account;
+    Scanner sc = new Scanner(System.in);
 
     System.out.println("Saisir le numéro de compte à supprimer :");
     accountSearched = sc.next();
 
     if (listAccount.containsKey(accountSearched)) {
-      listAccount.remove(accountSearched);
-      System.out.println("-- Numéro de compte supprimé --");
+      account = listAccount.get(accountSearched);
+      System.out.println("Vous souhaitez supprimer le compte " + account.getAccountType() + " de " + account.getClientFirstName() + " "
+          + account.getClientLastName() + ", (O)ui ou (N)on ?");
+      temp = sc.next().toUpperCase().charAt(0);
+      if (temp == 'O') {
+        listAccount.remove(accountSearched);
+        System.out.println("-- Numéro de compte supprimé --");
+      } else System.out.println("-- Action abandonnée --");
     } else System.out.println("-- Ce numéro de compte n'existe pas --");
   }
 
