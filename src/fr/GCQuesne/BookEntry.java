@@ -1,6 +1,9 @@
 package fr.GCQuesne;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -13,9 +16,10 @@ import java.util.Scanner;
 public class BookEntry implements Serializable {
   private final String transactionPaymentType;
   private final String transactionTheme;
-  private final long date;
   private String chequeNumber = "";
   private double transactionValue;
+  private final SimpleDateFormat date = new SimpleDateFormat("ddMMyy", Locale.FRENCH);
+  private Date dateTransaction = new Date();
 
   /**
    * Constructor, create a accounting entry's object
@@ -23,12 +27,24 @@ public class BookEntry implements Serializable {
    * @since 1.0
    */
   public BookEntry() {
+    boolean dateValidator;
+    String sdf;
     Scanner sc = new Scanner(System.in);
 
     System.out.println("La somme à créditer (valeur positive) ou à débiter (valeur négative) :");
     transactionValue = sc.useLocale(Locale.US).nextDouble();
-    System.out.println("La date de l'opération :");
-    date = sc.nextLong();
+    do {
+      System.out.println("La date de l'opération :");
+      sdf = sc.next();
+      try {
+        date.setLenient(false);
+        dateTransaction = date.parse(sdf);
+        dateValidator = true;
+      } catch (ParseException e) {
+        System.out.println("Date non conforme");
+        dateValidator = false;
+      }
+    } while (dateValidator == false);
     transactionTheme = checkTransactionTheme();
     transactionPaymentType = checkTransactionPaymentType();
     if (transactionPaymentType.equals("Chèque")) {
@@ -58,25 +74,26 @@ public class BookEntry implements Serializable {
   }
 
   /**
-   * Print the line of accounting record : date, theme, credit/debit, the value of transaction and the type of transaction
+   * Prints the line of accounting record : date, theme, credit/debit, the value of transaction and the type of transaction
    *
    * @since 1.0
    */
   public void printAccountingRecord() {
-    System.out.print("\nDate : " + date + " - Thème : " + transactionTheme);
+    String temp;
+    SimpleDateFormat dateFormatOut = new SimpleDateFormat("dd/MM/yy");
+    temp = dateFormatOut.format(dateTransaction);
 
+    System.out.print("\nDate : " + temp + " - Thème : " + transactionTheme);
     if (transactionValue > 0) System.out.print(" - Crédit : " + transactionValue);
     else System.out.print(" - Débit : " + transactionValue);
-
     System.out.print("€ - Type de transaction : " + transactionPaymentType);
-
     if (!chequeNumber.isEmpty()) {
       System.out.print(" - Numéro du chèque : " + chequeNumber);
     }
   }
 
   /**
-   * Enter and check the theme of the transaction : Salary, Rent, Feeding and Miscellaneous
+   * Enters and checks the theme of the transaction : Salary, Rent, Feeding and Miscellaneous
    *
    * @return the theme of the transaction normalize
    */
@@ -111,7 +128,7 @@ public class BookEntry implements Serializable {
   }
 
   /**
-   * Enter and check the type of payment : Credit card, Cheque and Transfer
+   * Enters and checks the type of payment : Credit card, Cheque and Transfer
    *
    * @return the type of payment normalize
    * @since 1.0
