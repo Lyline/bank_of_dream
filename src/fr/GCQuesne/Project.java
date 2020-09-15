@@ -11,11 +11,13 @@ import java.util.Scanner;
  */
 public class Project implements Serializable {
   static int selectionMenu;
+  static ListAccount myListAccount;
+  static FileAccount myFileAccount;
 
   public static void main(String[] args) {
-    ListAccount myListAccount = new ListAccount();
+    myListAccount = new ListAccount();
+    myFileAccount = new FileAccount();
 
-    FileAccount myFileAccount = new FileAccount();
     if (myFileAccount.openFile("read")) {
       myListAccount = myFileAccount.readFile();
       myFileAccount.closeFile();
@@ -45,9 +47,6 @@ public class Project implements Serializable {
           break;
 
         case 6:
-          myFileAccount.openFile("write");
-          myFileAccount.writeFile(myListAccount);
-          myFileAccount.closeFile();
           exitApplication();
           break;
 
@@ -92,6 +91,9 @@ public class Project implements Serializable {
    * Exits to the application
    */
   public static void exitApplication() {
+    myFileAccount.openFile("write");
+    myFileAccount.writeFile(myListAccount);
+    myFileAccount.closeFile();
     System.out.println("À Bientôt");
     System.exit(0);
   }
