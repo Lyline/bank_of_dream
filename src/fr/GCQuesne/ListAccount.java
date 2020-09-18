@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ListAccount implements Serializable {
   private final HashMap<String, Account> listAccount;
-  private Account myAccount;
+  public Account myAccount;
 
   /**
    * Constructor of the list of this accounts
@@ -76,6 +76,24 @@ public class ListAccount implements Serializable {
   }
 
   /**
+   * Select an account
+   *
+   * @return the account selected
+   */
+  private Account selectAccount() {
+    Account accountSelected = null;
+    Scanner sc = new Scanner(System.in);
+
+    System.out.println("Entrer un numéro de compte :");
+    String accountNumber = sc.next();
+
+    if (listAccount.get(accountNumber) != null)
+      accountSelected = listAccount.get(accountNumber);
+    else System.out.println("compte inconnu");
+    return accountSelected;
+  }
+
+  /**
    * Deletes this account and all its data
    */
   public void deleteAccount() {
@@ -109,8 +127,77 @@ public class ListAccount implements Serializable {
     } else System.out.println("-- Il n'y a aucun compte enregistré --");
   }
 
+  /**
+   * Print an account with all informations (values, transactions...)
+   *
+   * @param temp account number
+   */
   public void printAccount(String temp) {
     Account account = listAccount.get(temp);
     account.printAccount();
+  }
+
+  public void printStatisticAccount() {
+    double[] sumArray = new double[5];
+    myAccount = selectAccount();
+
+    if (myAccount != null) {
+      sumArray = sumTransactions();
+      double averageRent = Statistic.percentage(sumArray[2], sumArray[1]);
+      double averageFood = Statistic.percentage(sumArray[3], sumArray[1]);
+      double averageMisc = Statistic.percentage(sumArray[4], sumArray[1]);
+      System.out.println("Loyer : " + averageRent + " %\n" +
+          "Alimentation : " + averageFood + " %\n" +
+          "Divers : " + averageMisc + " %\n");
+    }
+  }
+
+  /**
+   * Sum all credits and debits, dispatch the debits by type of theme
+   *
+   * @return array of sums [credit, debit, rent, food, miscellaneous]
+   */
+  private double[] sumTransactions() {
+    String typeTransaction;
+    int lineAccountingRecord = 0;
+    double credit = 0, debit = 0, valueTransaction,
+        sumRent = 0, sumFood = 0, sumMisc = 0;
+
+    double[] sum = new double[5];
+
+    do {
+      valueTransaction = myAccount.line[lineAccountingRecord].getTransactionValue();
+      typeTransaction = myAccount.line[lineAccountingRecord].getTransactionTheme();
+
+      if (valueTransaction > 0) credit += valueTransaction;
+      if (valueTransaction < 0) {
+        debit += Math.abs(valueTransaction);
+        switch (typeTransaction) {
+          case "Loyer":
+            sumRent += Math.abs(valueTransaction);
+            break;
+          case "Alimentation":
+            sumFood += Math.abs(valueTransaction);
+            break;
+          case "Divers":
+            sumMisc += Math.abs(valueTransaction);
+            break;
+
+        }
+      }
+      lineAccountingRecord++;
+    } while (myAccount.line[lineAccountingRecord] != null);
+
+    sum[0] = credit;
+    sum[1] = debit;
+    sum[2] = sumRent;
+    sum[3] = sumFood;
+    sum[4] = sumMisc;
+    System.out.println("Somme des crédit : " + credit +
+        "€ Somme des débits : " + debit +
+        "€\n Somme des loyers : " + sumRent +
+        "€\n Somme des Alim : " + sumFood +
+        "€\n Somme des divers : " + sumMisc + " €");
+    return sum;
   }
 }

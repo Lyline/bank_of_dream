@@ -16,11 +16,12 @@ import java.util.Scanner;
 public class BookEntry implements Serializable {
   private final String transactionPaymentType;
   private final String transactionTheme;
+
   private String chequeNumber = "";
+
   private double transactionValue;
   private final SimpleDateFormat date = new SimpleDateFormat("ddMMyy", Locale.FRENCH);
   private Date dateTransaction = new Date();
-
   /**
    * Constructor, create a accounting entry's object
    *
@@ -44,7 +45,7 @@ public class BookEntry implements Serializable {
         System.out.println("Date non conforme");
         dateValidator = false;
       }
-    } while (dateValidator == false);
+    } while (!dateValidator);
     transactionTheme = checkTransactionTheme();
     transactionPaymentType = checkTransactionPaymentType();
     if (transactionPaymentType.equals("Chèque")) {
@@ -61,6 +62,10 @@ public class BookEntry implements Serializable {
    */
   public double getTransactionValue() {
     return transactionValue;
+  }
+
+  public String getTransactionTheme() {
+    return transactionTheme;
   }
 
   /**

@@ -1,5 +1,6 @@
 package fr.GCQuesne;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Scanner;
  */
 
 public class Statistic {
-  static int numberCreditCard,
+  static double numberCreditCard,
       numberCheque,
       numberTransfer,
       totalOrder;
@@ -30,9 +31,9 @@ public class Statistic {
     numberTransfer = sc.nextInt();
 
     totalOrder = numberCreditCard + numberCheque + numberTransfer;
-    averageCreditCard = percentage(numberCreditCard);
-    averageCheque = percentage(numberCheque);
-    averageTransfer = percentage(numberTransfer);
+    averageCreditCard = percentage(numberCreditCard, totalOrder);
+    averageCheque = percentage(numberCheque, totalOrder);
+    averageTransfer = percentage(numberTransfer, totalOrder);
 
     System.out.println("Vous avez émis " + totalOrder + " ordres de débits :\n" +
         "dont : " + averageCreditCard + "% par Carte bancaire\n" +
@@ -44,10 +45,14 @@ public class Statistic {
   /**
    * Calculate the average of this order's type (credit card, cheque or transfer)
    *
-   * @param numberOrderType the total number's order for this type
+   * @param sumType the total number's order for this type
    * @return the average of this type by total order of all types
    */
-  public static double percentage(int numberOrderType) {
-    return numberOrderType * 100 / (double) totalOrder;
+  public static double percentage(double sumType, double totalType) {
+    DecimalFormat df = new DecimalFormat("###,##");
+
+    double average = sumType * 100 / totalType;
+    return Double.parseDouble(df.format(average));
   }
+
 }

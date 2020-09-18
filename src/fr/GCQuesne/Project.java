@@ -35,24 +35,30 @@ public class Project implements Serializable {
           break;
 
         case 3:
+          myListAccount.printStatisticAccount();
+          break;
+
+        case 4:
           String accountPrinted = myListAccount.searchAccount();
           myListAccount.printAccount(accountPrinted);
           break;
-        case 4:
+
+        case 5:
           myListAccount.deleteAccount();
           break;
 
-        case 5:
+        case 6:
           myListAccount.printAllAccounts();
           break;
 
-        case 6:
+        case 7:
           exitApplication();
           break;
 
-        case 7:
+        case 8:
           helpApplication();
           break;
+
         default:
           System.out.println("Sélection non reconnue\n");
       }
@@ -77,11 +83,12 @@ public class Project implements Serializable {
 
     System.out.println("\n1 Créer un compte\n" +
         "2 Ajouter une ligne comptable\n" +
-        "3 Rechercher un compte\n" +
-        "4 Supprimer un compte\n" +
-        "5 Afficher la liste de tous les comptes\n" +
-        "6 Sortir\n" +
-        "7 De l'aide\n\n" +
+        "3 Afficher les statistiques d'un compte\n" +
+        "4 Rechercher un compte\n" +
+        "5 Supprimer un compte\n" +
+        "6 Afficher la liste de tous les comptes\n" +
+        "7 Sortir\n" +
+        "8 De l'aide\n\n" +
         "Votre choix :");
     selectMenu = sc.nextInt();
     return selectMenu;

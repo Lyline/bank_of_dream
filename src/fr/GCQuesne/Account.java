@@ -199,13 +199,11 @@ public class Account implements Serializable {
     lineRecorded++;
     accountInitialValue = accountValue;
 
-    if (lineRecorded < numberRecordMaxi) {
-      line[lineRecorded] = new BookEntry();
-    } else {
+    if (lineRecorded >= numberRecordMaxi) {
       lineRecorded--;
       shiftLine();
-      line[lineRecorded] = new BookEntry();
     }
+    line[lineRecorded] = new BookEntry();
     accountValue = accountInitialValue + line[lineRecorded].getTransactionValue();
 
   }
