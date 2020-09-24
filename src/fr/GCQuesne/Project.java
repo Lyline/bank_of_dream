@@ -35,7 +35,8 @@ public class Project implements Serializable {
           break;
 
         case 3:
-          myListAccount.printStatisticAccount();
+          MainWindow myWindow = new MainWindow();
+          myWindow.setVisible(true);
           break;
 
         case 4:
@@ -62,7 +63,7 @@ public class Project implements Serializable {
         default:
           System.out.println("Sélection non reconnue\n");
       }
-    } while (selectionMenu != 6);
+    } while (selectionMenu != 7);
   }
 
   /**

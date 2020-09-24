@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static fr.GCQuesne.Statistic.percentage;
+
 /**
  * Class Account merge all functionalities Account's object
  *
@@ -259,5 +261,71 @@ public class Account implements Serializable {
       if (temp < 0) System.out.println("-- Attention, saisir une valeur positive --");
     } while (temp < 0);
     return temp;
+  }
+
+  /**
+   * Sum all credits and debits, dispatch the debits by type of theme
+   *
+   * @return array of sums [credit, debit, rent, food, miscellaneous]
+   */
+  public double[] sumTransactions(Account myAccount) {
+    String typeTransaction;
+    int lineAccountingRecord = 0;
+    double credit = 0, debit = 0, valueTransaction,
+        sumRent = 0, sumFood = 0, sumMisc = 0;
+
+    double[] sum = new double[8];
+
+    do {
+      valueTransaction = myAccount.line[lineAccountingRecord].getTransactionValue();
+      typeTransaction = myAccount.line[lineAccountingRecord].getTransactionTheme();
+
+      if (valueTransaction > 0) credit += valueTransaction;
+      if (valueTransaction < 0) {
+        debit += Math.abs(valueTransaction);
+        switch (typeTransaction) {
+          case "Loyer":
+            sumRent += Math.abs(valueTransaction);
+            break;
+          case "Alimentation":
+            sumFood += Math.abs(valueTransaction);
+            break;
+          case "Divers":
+            sumMisc += Math.abs(valueTransaction);
+            break;
+
+        }
+      }
+      lineAccountingRecord++;
+    } while (myAccount.line[lineAccountingRecord] != null);
+
+    sum[0] = credit;
+    sum[1] = debit;
+    sum[2] = sumRent;
+    sum[3] = sumFood;
+    sum[4] = sumMisc;
+    sum[5] = percentage(sumRent, debit);
+    sum[6] = percentage(sumFood, debit);
+    sum[7] = percentage(sumMisc, debit);
+    System.out.println("Somme des crédit : " + credit +
+        "€ Somme des débits : " + debit +
+        "€\n Somme des loyers : " + sumRent +
+        "€\n Somme des Alim : " + sumFood +
+        "€\n Somme des divers : " + sumMisc + " €");
+    return sum;
+  }
+
+  public void printStatisticAccount(Account myAccount) {
+    double[] sumArray;
+
+    if (myAccount != null) {
+      sumArray = sumTransactions(myAccount);
+      double averageRent = percentage(sumArray[2], sumArray[1]);
+      double averageFood = percentage(sumArray[3], sumArray[1]);
+      double averageMisc = percentage(sumArray[4], sumArray[1]);
+      System.out.println("Loyer : " + averageRent + " %\n" +
+          "Alimentation : " + averageFood + " %\n" +
+          "Divers : " + averageMisc + " %\n");
+    }
   }
 }

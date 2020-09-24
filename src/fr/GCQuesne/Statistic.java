@@ -49,10 +49,10 @@ public class Statistic {
    * @return the average of this type by total order of all types
    */
   public static double percentage(double sumType, double totalType) {
-    DecimalFormat df = new DecimalFormat("###,##");
-
-    double average = sumType * 100 / totalType;
-    return Double.parseDouble(df.format(average));
+    if (sumType != 0) {
+      double result = sumType * 100 / totalType;
+      return result;
+    } else return 0;
   }
 
 }
