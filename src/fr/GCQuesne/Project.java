@@ -1,5 +1,6 @@
 package fr.GCQuesne;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.Scanner;
 
@@ -9,12 +10,19 @@ import java.util.Scanner;
  * @author GCQuesne
  * @version 1.0
  */
-public class Project implements Serializable {
+public class Project extends JFrame implements Serializable {
   static int selectionMenu;
   static ListAccount myListAccount;
   static FileAccount myFileAccount;
 
   public static void main(String[] args) {
+    JFrame frame = new JFrame("- Gestionnaire de comptes -");
+    frame.setContentPane(new CreateAccountGUI().mainPanel);
+    frame.setLocationRelativeTo(null);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.pack();
+    frame.setVisible(true);
+
     myListAccount = new ListAccount();
     myFileAccount = new FileAccount();
 

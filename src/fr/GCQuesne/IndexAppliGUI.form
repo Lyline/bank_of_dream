@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="fr.GCQuesne.IndexAppliGUI">
+  <grid id="27dc6" binding="mainPanneau" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="139" width="450" height="709"/>
+    </constraints>
+    <properties>
+      <autoscrolls value="true"/>
+      <background color="-3100784"/>
+      <doubleBuffered value="false"/>
+      <enabled value="true"/>
+      <focusTraversalPolicyProvider value="true"/>
+      <font/>
+      <foreground color="-14342875"/>
+      <maximumSize width="450" height="600"/>
+      <minimumSize width="450" height="600"/>
+      <opaque value="true"/>
+      <preferredSize width="450" height="600"/>
+      <visible value="true"/>
+    </properties>
+    <border type="empty" title-justification="2"/>
+    <children>
+      <component id="e6ad5" class="javax.swing.JLabel" binding="imgBackground">
+        <constraints border-constraint="South"/>
+        <properties>
+          <foreground color="-14342875"/>
+          <icon value="img/index_bkg.jpg"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <grid id="8c8f9" binding="accountAction" layout-manager="GridBagLayout">
+        <constraints border-constraint="North"/>
+        <properties>
+          <autoscrolls value="true"/>
+          <background color="-3100784"/>
+        </properties>
+        <border type="line" title="Comptes">
+          <font name="Arial Rounded MT Bold" size="16" style="3"/>
+          <title-color color="-14342875"/>
+        </border>
+        <children>
+          <component id="82697" class="javax.swing.JRadioButton" binding="ajouterUnLigneComptableRadioButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-3100784"/>
+              <foreground color="-14342875"/>
+              <preferredSize width="200" height="50"/>
+              <text value="Ajouter un ligne comptable"/>
+            </properties>
+          </component>
+          <component id="169df" class="javax.swing.JRadioButton" binding="editerUnCompteRadioButton" default-binding="true">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-3100784"/>
+              <font/>
+              <foreground color="-14342875"/>
+              <preferredSize width="200" height="50"/>
+              <text value="Editer un compte"/>
+            </properties>
+          </component>
+          <component id="26f34" class="javax.swing.JRadioButton" binding="creerRadioButton">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-3100784"/>
+              <foreground color="-14342875"/>
+              <margin top="2" left="2" bottom="2" right="2"/>
+              <maximumSize width="89" height="50"/>
+              <minimumSize width="89" height="50"/>
+              <preferredSize width="200" height="50"/>
+              <text value="Créer un nouveau compte"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="549d8" binding="numberAccount" layout-manager="FlowLayout" hgap="30" vgap="50" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <background color="-3100784"/>
+          <enabled value="true"/>
+          <focusable value="true"/>
+          <font name="Arial Rounded MT Bold" size="22" style="3"/>
+          <foreground color="-14342875"/>
+          <maximumSize width="2147483647" height="21"/>
+          <minimumSize width="117" height="21"/>
+        </properties>
+        <border type="line" title="Numéro :">
+          <font name="Arial Rounded MT Bold" size="16" style="3"/>
+          <title-color color="-14342875"/>
+        </border>
+        <children>
+          <component id="bb7c9" class="javax.swing.JLabel" binding="accountNumberLabel">
+            <constraints/>
+            <properties>
+              <foreground color="-14342875"/>
+              <horizontalAlignment value="2"/>
+              <horizontalTextPosition value="2"/>
+              <text value="Numéro :"/>
+            </properties>
+          </component>
+          <component id="93d4c" class="javax.swing.JTextArea" binding="entrerUnNumeroDeTextArea">
+            <constraints/>
+            <properties>
+              <background color="-5468041"/>
+              <columns value="3"/>
+              <foreground color="-14342875"/>
+              <lineWrap value="true"/>
+              <margin top="0" left="20" bottom="0" right="5"/>
+              <preferredSize width="250" height="17"/>
+              <selectionEnd value="26"/>
+              <selectionStart value="26"/>
+              <text value="Entrer un numéro de compte"/>
+              <verifyInputWhenFocusTarget value="true"/>
+              <visible value="true"/>
+            </properties>
+          </component>
+          <component id="2c4fc" class="javax.swing.JButton" binding="accountSelectBtn">
+            <constraints/>
+            <properties>
+              <background color="-5468041"/>
+              <foreground color="-14342875"/>
+              <hideActionText value="false"/>
+              <text value="Sélectionner"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
