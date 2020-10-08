@@ -59,6 +59,12 @@ public class FileAccount {
     }
   }
 
+  public void saveAll(ListAccount temp) {
+    openFile("w");
+    writeFile(temp);
+    closeFile();
+  }
+
   /**
    * Reads the data's account on this file
    *
