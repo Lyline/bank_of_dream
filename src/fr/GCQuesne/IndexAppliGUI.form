@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="fr.GCQuesne.IndexAppliGUI">
-  <grid id="27dc6" binding="mainPanneau" layout-manager="BorderLayout" hgap="0" vgap="0">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="20" y="139" width="450" height="709"/>
     </constraints>
@@ -15,7 +15,7 @@
       <maximumSize width="450" height="600"/>
       <minimumSize width="450" height="600"/>
       <opaque value="true"/>
-      <preferredSize width="450" height="600"/>
+      <preferredSize width="450" height="630"/>
       <visible value="true"/>
     </properties>
     <border type="empty" title-justification="2"/>
@@ -39,7 +39,7 @@
           <title-color color="-14342875"/>
         </border>
         <children>
-          <component id="82697" class="javax.swing.JRadioButton" binding="ajouterUnLigneComptableRadioButton" default-binding="true">
+          <component id="82697" class="javax.swing.JRadioButton" binding="addAccountingRecordRadioBtn">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -51,7 +51,7 @@
               <text value="Ajouter un ligne comptable"/>
             </properties>
           </component>
-          <component id="169df" class="javax.swing.JRadioButton" binding="editerUnCompteRadioButton" default-binding="true">
+          <component id="169df" class="javax.swing.JRadioButton" binding="printAccountRadioBtn">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -64,7 +64,7 @@
               <text value="Editer un compte"/>
             </properties>
           </component>
-          <component id="26f34" class="javax.swing.JRadioButton" binding="creerRadioButton">
+          <component id="26f34" class="javax.swing.JRadioButton" binding="createAccountRadioBtn">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -76,7 +76,19 @@
               <maximumSize width="89" height="50"/>
               <minimumSize width="89" height="50"/>
               <preferredSize width="200" height="50"/>
+              <selected value="true"/>
               <text value="Créer un nouveau compte"/>
+            </properties>
+          </component>
+          <component id="a543" class="javax.swing.JLabel" binding="errorMessageLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
+              <foreground color="-3100784"/>
+              <text value="ENTRER UN NUMERO DE COMPTE"/>
             </properties>
           </component>
         </children>
@@ -106,18 +118,17 @@
               <text value="Numéro :"/>
             </properties>
           </component>
-          <component id="93d4c" class="javax.swing.JTextArea" binding="entrerUnNumeroDeTextArea">
+          <component id="1d0ca" class="javax.swing.JTextField" binding="enterAccountNumberTextField">
             <constraints/>
             <properties>
               <background color="-5468041"/>
-              <columns value="3"/>
+              <columns value="18"/>
               <foreground color="-14342875"/>
-              <lineWrap value="true"/>
-              <margin top="0" left="20" bottom="0" right="5"/>
-              <preferredSize width="250" height="17"/>
-              <selectionEnd value="26"/>
-              <selectionStart value="26"/>
-              <text value="Entrer un numéro de compte"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
+              <preferredSize width="204" height="30"/>
+              <selectionEnd value="0"/>
+              <selectionStart value="0"/>
+              <text value=""/>
               <verifyInputWhenFocusTarget value="true"/>
               <visible value="true"/>
             </properties>
@@ -135,4 +146,11 @@
       </grid>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="btnGroup">
+      <member id="82697"/>
+      <member id="169df"/>
+      <member id="26f34"/>
+    </group>
+  </buttonGroups>
 </form>
