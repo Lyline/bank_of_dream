@@ -24,7 +24,7 @@ public class ListAccount implements Serializable {
    * @see Account
    * @since 1.0
    */
-  public void addAccount() {
+/*  public void addAccount() {
     char accountType;
     Scanner sc = new Scanner(System.in);
 
@@ -42,6 +42,12 @@ public class ListAccount implements Serializable {
       if (!listAccount.containsKey(key)) listAccount.put(key, myAccount);
       else System.out.println("-- Attention, ce numéro de compte existe déjà, veuillez recommencer --");
     } else System.out.println("-- Impossible de créer un nouveau compte --");
+  }*/
+  public void addAccount(Account newAccount) {
+    String key = newAccount.getAccountNumber();
+    if (!listAccount.containsKey(key)) listAccount.put(key, newAccount);
+    else System.out.println("-- Attention, ce numéro de compte existe déjà, veuillez recommencer --");
+
   }
 
   /**
