@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import static fr.GCQuesne.Statistic.percentage;
+import static java.lang.Double.parseDouble;
 
 /**
  * Class Account merge all functionalities Account's object
@@ -49,6 +50,19 @@ public class Account implements Serializable {
     accountType = checkingAccountType();
     accountValue = checkAccountInitialValue();
     lineRecorded = -1;
+  }
+
+  public Account(String clientLastName, String clientFirstName,
+                 String accountType, String accountNumber, String accountInitialValue) {
+    line = new BookEntry[numberRecordMaxi];
+    lineRecorded = -1;
+
+    Double accountInitialValueTemp = parseDouble(accountInitialValue);
+    this.accountValue = accountInitialValueTemp;
+    this.clientFirstName = clientFirstName;
+    this.accountType = accountType;
+    this.clientLastName = clientLastName;
+    this.accountNumber = accountNumber;
   }
 
   /**
