@@ -3,6 +3,8 @@ package fr.GCQuesne;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static java.lang.Double.parseDouble;
+
 /**
  * Class SavingAccount merge all functionalities SavingAccount's object extends of the class Account
  *
@@ -30,7 +32,23 @@ public class SavingAccount extends Account {
    */
   public SavingAccount() {
     super('E');
-    accountSavingRate = checkSavingRate();
+    this.accountSavingRate = checkSavingRate();
+  }
+
+  /**
+   * Constructor : create a saving account with the GUI
+   *
+   * @param lastName      the last name of client
+   * @param firstName     the first name of client
+   * @param accountNumber the account number of client
+   * @param initialValue  the initial value of account
+   * @param savingRate    the saving rate (%) of account
+   */
+  public SavingAccount(String lastName, String firstName, String accountNumber,
+                       String initialValue, String savingRate) {
+    super(lastName, firstName, "épargne", accountNumber, initialValue);
+    Double savingRateValueTemp = parseDouble(savingRate);
+    this.accountSavingRate = savingRateValueTemp;
   }
 
   /**
