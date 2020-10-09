@@ -87,8 +87,9 @@
             </constraints>
             <properties>
               <enabled value="true"/>
-              <foreground color="-3100784"/>
+              <foreground color="-4507333"/>
               <text value="ENTRER UN NUMERO DE COMPTE"/>
+              <visible value="false"/>
             </properties>
           </component>
         </children>
