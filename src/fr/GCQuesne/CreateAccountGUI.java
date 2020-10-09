@@ -39,14 +39,15 @@ public class CreateAccountGUI extends JWindow {
   private JLabel firstNameLabel;
   private JLabel lastNameSecondLabel;
   private JLabel firstNameSecondLabel;
-
-  private JButton ValidateBtn;
   private JLabel percentageLabel;
 
+  private JButton ValidateBtn;
+  private JPanel imagePanel;
 
   private ButtonGroup typeAccountBtnGroup;
 
   public CreateAccountGUI() {
+
     $$$setupUI$$$();
     ValidateBtn.addActionListener(new ActionListener() {
       @Override
@@ -76,7 +77,6 @@ public class CreateAccountGUI extends JWindow {
           myListAccount.addAccount(myJoinAccount);
           myFileAccount.saveAll(myListAccount);
         }
-
 
         myListAccount.printAllAccounts();
       }
@@ -133,14 +133,14 @@ public class CreateAccountGUI extends JWindow {
   private void $$$setupUI$$$() {
     createUIComponents();
     mainPanel = new JPanel();
-    mainPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+    mainPanel.setLayout(new BorderLayout(0, 0));
     mainPanel.setBackground(new Color(-3100784));
-    mainPanel.setPreferredSize(new Dimension(450, 700));
+    mainPanel.setPreferredSize(new Dimension(450, 750));
     idPanel = new JPanel();
     idPanel.setLayout(new GridBagLayout());
     idPanel.setAlignmentY(0.5f);
     idPanel.setBackground(new Color(-3100784));
-    mainPanel.add(idPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(300, 150), null, 0, false));
+    mainPanel.add(idPanel, BorderLayout.NORTH);
     idPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Identification", TitledBorder.LEADING, TitledBorder.TOP, this.$$$getFont$$$("Arial Rounded MT Bold", Font.BOLD | Font.ITALIC, 16, idPanel.getFont()), new Color(-14342875)));
     lastNameLabel = new JLabel();
     lastNameLabel.setForeground(new Color(-14342875));
@@ -234,7 +234,7 @@ public class CreateAccountGUI extends JWindow {
     typeAccountPanel.setLayout(new GridBagLayout());
     typeAccountPanel.setBackground(new Color(-3100784));
     typeAccountPanel.setForeground(new Color(-14342875));
-    mainPanel.add(typeAccountPanel, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(-1, 80), null, 0, false));
+    mainPanel.add(typeAccountPanel, BorderLayout.CENTER);
     currentTypeRadioBtn = new JRadioButton();
     currentTypeRadioBtn.setBackground(new Color(-3100784));
     currentTypeRadioBtn.setEnabled(true);
@@ -336,10 +336,11 @@ public class CreateAccountGUI extends JWindow {
     gbc.gridy = 3;
     gbc.insets = new Insets(0, 0, 20, 0);
     typeAccountPanel.add(ValidateBtn, gbc);
-    final JPanel panel1 = new JPanel();
-    panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-    panel1.setBackground(new Color(-3100784));
-    mainPanel.add(panel1, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+    imagePanel = new JPanel();
+    imagePanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+    imagePanel.setBackground(new Color(-3100784));
+    imagePanel.setPreferredSize(new Dimension(454, 250));
+    mainPanel.add(imagePanel, BorderLayout.SOUTH);
     imgBackgroundAccount = new JLabel();
     imgBackgroundAccount.setAlignmentY(1.0f);
     imgBackgroundAccount.setAutoscrolls(false);
@@ -351,7 +352,7 @@ public class CreateAccountGUI extends JWindow {
     imgBackgroundAccount.setText("");
     imgBackgroundAccount.setVerticalAlignment(1);
     imgBackgroundAccount.setVerticalTextPosition(1);
-    panel1.add(imgBackgroundAccount, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_NORTHWEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(350, 300), new Dimension(450, 500), new Dimension(500, 300), 0, false));
+    imagePanel.add(imgBackgroundAccount, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_NORTHWEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(350, 300), new Dimension(450, 500), new Dimension(500, 300), 0, false));
     typeAccountBtnGroup = new ButtonGroup();
     typeAccountBtnGroup.add(currentTypeRadioBtn);
     typeAccountBtnGroup.add(savingTypeRadioBtn);
