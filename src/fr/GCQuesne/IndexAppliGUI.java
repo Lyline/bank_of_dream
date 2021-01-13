@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static fr.GCQuesne.ListAccount.myAccount;
 import static fr.GCQuesne.Project.myListAccount;
 
 
@@ -25,6 +26,7 @@ public class IndexAppliGUI extends JPanel {
   JTextField enterAccountNumberTextField;
   JLabel errorMessageLabel;
 
+
   public IndexAppliGUI() {
     accountSelectBtn.addActionListener(new ActionListener() {
       @Override
@@ -35,21 +37,19 @@ public class IndexAppliGUI extends JPanel {
           errorMessageLabel.setText("ENTRER UN NUMERO DE COMPTE");
           errorMessageLabel.setVisible(true);
         }
+
         if (createAccountRadioBtn.isSelected() && !enterAccountNumberTextField.getText().isEmpty()) {
           openNewWindow(new CreateAccountGUI().mainPanel, "- Création d'un compte -");
         }
 
         if (addAccountingRecordRadioBtn.isSelected() && !enterAccountNumberTextField.getText().isEmpty()) {
-          Account myAccount = myListAccount.selectAccount(enteredAccount);
+          myAccount = myListAccount.selectAccount(enteredAccount);
           if (myAccount != null)
             openNewWindow(new AccountingRecordGUI().mainPanel, "- Ajout d'une ligne comptable -");
           else {
             errorMessageLabel.setVisible(true);
             errorMessageLabel.setText("NUMERO DE COMPTE INCONNU");
-
           }
-
-
         }
 
         if (printAccountRadioBtn.isSelected() && !enterAccountNumberTextField.getText().isEmpty())
